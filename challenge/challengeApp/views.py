@@ -12,6 +12,15 @@ from django.contrib import messages
 
 def inicio(request):
     
+    if request.user.is_authenticated:
+        
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url = "/media/avatar/generica.jpg"
+            return render(request, "challengeApp/index.html", {"url": url})
+    
     return render(request, 'challengeApp/index.html')
 
 def login_request(request):
@@ -77,3 +86,10 @@ def register_request(request):
     form = UserRegisterForm()
     
     return render(request, 'challengeApp/register.html', {'form': form} )
+
+def logout_request(request):
+    
+    logout(request)
+    return redirect("inicio")
+
+
