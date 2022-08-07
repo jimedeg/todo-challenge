@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.decorators import login_required
+
 from .models import *
 from .forms import *
 
@@ -91,5 +93,48 @@ def logout_request(request):
     
     logout(request)
     return redirect("inicio")
+
+@login_required
+def editar_perfil(request):
+    
+    user = request.user    
+    try:
+        avatar = Avatar.objects.get(usuario=user)
+    except:
+        avatar = Avatar(usuario=user)
+        avatar.save()
+    
+    if request.method == "POST":
+        
+        form = UserEditForm2(request.POST, request.FILES)
+        
+        if form.is_valid():
+            
+            info = form.cleaned_data
+            user.email = info["email"]
+            user.first_name = info["first_name"]
+            user.last_name = info["last_name"]
+
+            user.save()
+            messages.success(request, "Perfil actualizado con éxito!")
+
+            if info['imagen'] != None:
+                avatar.imagen = info['imagen']
+                avatar.save()
+                           
+            return redirect("inicio")
+                
+        else:
+            messages.error(request, "Error al actualizar el perfil")
+            return render(request, "challengeApp/editar_perfil.html", {"form": form})          
+    
+    else:
+         form = UserEditForm2(initial={"email": user.email,
+                                      "first_name": user.first_name, 
+                                      "last_name": user.last_name, 
+                                      "imagen": avatar.imagen
+                                      })
+    
+    return render(request, "challengeApp/editar_perfil.html", {"form": form})
 
 

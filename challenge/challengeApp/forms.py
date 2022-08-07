@@ -40,10 +40,10 @@ class UserEditForm2(forms.Form):
     imagen= forms.ImageField(label="Imagen", required=False)
 
         
-# class AvatarForm(forms.Form):
+class AvatarForm(forms.Form):
      
-#     imagen = forms.ImageField(label="Imagen")
+    imagen = forms.ImageField(label="Imagen")
     
-#     class Meta:
-#         model = Avatar
-#         fields = ['imagen']
+    class Meta:
+        model = Avatar
+        fields = ['imagen']
