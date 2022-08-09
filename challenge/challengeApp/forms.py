@@ -47,3 +47,8 @@ class AvatarForm(forms.Form):
     class Meta:
         model = Avatar
         fields = ['imagen']
+        
+class TareaForm(forms.Form):
+    texto = forms.CharField(label="Tarea", max_length=50,
+             widget=forms.TextInput(attrs={'class': 'flex-grow-0 form-control mr-sm-2 ', 'placeholder': 'Escribe tu tarea', 'aria-describedby' : 'agregar-btn'}))
+            

@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
+
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -13,6 +15,19 @@ from django.contrib import messages
 # Create your views here.
 
 def inicio(request):
+    tareas = Tarea.objects.order_by('-fecha')
+    
+    form = TareaForm()
+              
+    
+    if request.method == "POST":
+        
+        buscar = request.POST["buscar"]
+        
+        if buscar != "":
+            tareas = Tarea.objects.filter(Q(texto__icontains=buscar, fecha__icontains=buscar))
+            
+            return render(request, "challengeApp/index.html", { "tareas": tareas, "buscar": True, "busqueda":buscar})
     
     if request.user.is_authenticated:
         
@@ -23,7 +38,7 @@ def inicio(request):
             url = "/media/avatar/generica.jpg"
             return render(request, "challengeApp/index.html", {"url": url})
     
-    return render(request, 'challengeApp/index.html')
+    return render(request, 'challengeApp/index.html', {"tareas": tareas, "buscar": False, "form": form})
 
 def login_request(request):
     
@@ -137,4 +152,61 @@ def editar_perfil(request):
     
     return render(request, "challengeApp/editar_perfil.html", {"form": form})
 
+@login_required
+def crear_tarea(request):
+    
+    if request.method == "POST":
+        
+        form = TareaForm(request.POST)
+        
+        if form.is_valid():
+            
+            form_tarea = form.cleaned_data
+            tareas = Tarea(texto=form_tarea["texto"])
+            tareas.save()
+            messages.success(request, "Tarea creada con éxito!")
+            return redirect("inicio")
+    
+    else:
+        form = TareaForm()
+    
+    return render(request, "challengeApp/index.html", {"form": form})
 
+@login_required
+def eliminar_tarea(request, tarea_id):
+    
+    tarea = Tarea.objects.get(id=tarea_id)
+    tarea.delete()
+    
+    return redirect("inicio")
+
+@login_required
+def tarea_lista(request, tarea_id):
+    
+    tarea = Tarea.objects.get(id=tarea_id)
+    tarea.completada = True
+    tarea.save()
+    return redirect("inicio")
+
+@login_required
+def editar_tarea(request, tarea_id):
+    
+    tarea = Tarea.objects.get(id=tarea_id)
+    
+    if request.method == "POST":
+        
+        form = TareaForm(request.POST)
+        
+        if form.is_valid():
+            
+            form_tarea = form.cleaned_data
+            
+            tarea.texto = form_tarea["texto"]
+            tarea.save()
+            messages.success(request, "Tarea actualizada con éxito!")
+            return redirect("inicio")
+    
+    else:
+        form = TareaForm(initial={"texto": tarea.texto})
+    
+    return render(request, "challengeApp/editar_tarea.html", {"form": form})
