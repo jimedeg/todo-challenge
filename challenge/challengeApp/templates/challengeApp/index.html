@@ -50,13 +50,49 @@ Inicio - Lista de Tareas
                                     <div class="card-body d-flex">
                                         <a href="{% url 'desmarcar_tarea' tarea.id %}" style="text-decoration: none"> <del class="text-black"> {{ tarea.texto }} </del> </a>    
                                         <a class="text-primary badge badge-primary text-decoration-none" href=" {% url 'editar_tarea' tarea.id %} "> <i class="fas fa-edit"></i></a>
-                                        <a class="text-danger badge badge-primary text-decoration-none" href=" {% url 'eliminar_tarea' tarea.id %} "> <i class="fas fa-trash-alt"></i></a>
+                                        <a class="text-danger badge badge-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fas fa-trash-alt"></i></a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Está seguro de eliminar la tarea?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary"" data-bs-dismiss="modal">Cancelar</button>
+                                                    <a href=" {% url 'eliminar_tarea' tarea.id %}"  class="btn btn-outline-danger"> Eliminar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                                     {% else %}
                                     <div class="card-body d-flex">
                                         <a href="{% url 'tarea_lista' tarea.id %}" class="text-black" style="text-decoration: none">{{ tarea.texto }}</a>
                                         <a class="text-primary badge badge-primary text-decoration-none" href=" {% url 'editar_tarea' tarea.id %} "> <i class="fas fa-edit"></i></a>
-                                        <a class="text-danger badge badge-primary text-decoration-none" href=" {% url 'eliminar_tarea' tarea.id %} "> <i class="fas fa-trash-alt"></i></a>
+                                        <a class="text-danger badge badge-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fas fa-trash-alt"></i></a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Está seguro de eliminar la tarea?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-secondary"" data-bs-dismiss="modal">Cancelar</button>
+                                                        <a href=" {% url 'eliminar_tarea' tarea.id %}"  class="btn btn-outline-danger"> Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 {% endif %}
                             </div>
