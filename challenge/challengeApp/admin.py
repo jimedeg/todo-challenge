@@ -12,7 +12,6 @@ class TareaAdmin(admin.ModelAdmin):
     
     
     
-    
 
 admin.site.register(Avatar, AvatarAdmin)
 admin.site.register(Tarea, TareaAdmin)

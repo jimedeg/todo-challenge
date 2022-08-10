@@ -12,9 +12,13 @@ class Avatar(models.Model):
 class Tarea(models.Model):
     
     texto = models.CharField(max_length=50)
-    fecha = models.DateField(auto_now_add=True)
+    fecha = models.DateTimeField(auto_now_add=True)
     completada = models.BooleanField(default=False)
     
     def __str__(self):
         return self.texto
+    
+    class Meta:
+        ordering = ['completada']
+    
     

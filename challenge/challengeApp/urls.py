@@ -13,6 +13,7 @@ urlpatterns = [
 
     path ('crear_tarea', crear_tarea, name= "crear_tarea"),   
     path ('tarea_lista/<tarea_id>/', tarea_lista, name= "tarea_lista"), 
+    path ('desmarcar_tarea/<tarea_id>/', desmarcar_tarea, name= "desmarcar_tarea"),
     path ('eliminar_tarea/<tarea_id>/', eliminar_tarea, name= "eliminar_tarea"),
     path ('editar_tarea/<tarea_id>/', editar_tarea, name= "editar_tarea"),
 

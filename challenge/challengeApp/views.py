@@ -14,8 +14,9 @@ from django.contrib import messages
 
 # Create your views here.
 
+@login_required
 def inicio(request):
-    tareas = Tarea.objects.order_by('-fecha')
+    tareas = Tarea.objects.all()
     
     form = TareaForm()
               
@@ -25,7 +26,7 @@ def inicio(request):
         buscar = request.POST["buscar"]
         
         if buscar != "":
-            tareas = Tarea.objects.filter(Q(texto__icontains=buscar, fecha__icontains=buscar))
+            tareas = Tarea.objects.filter(Q(texto__icontains=buscar) | Q(fecha__icontains=buscar)).values()
             
             return render(request, "challengeApp/index.html", { "tareas": tareas, "buscar": True, "busqueda":buscar})
     
@@ -185,6 +186,13 @@ def tarea_lista(request, tarea_id):
     
     tarea = Tarea.objects.get(id=tarea_id)
     tarea.completada = True
+    tarea.save()
+    return redirect("inicio")
+
+def desmarcar_tarea(request, tarea_id):
+    
+    tarea = Tarea.objects.get(id=tarea_id)
+    tarea.completada = False
     tarea.save()
     return redirect("inicio")
 
