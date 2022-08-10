@@ -1,37 +1,44 @@
 # Invera ToDo-List Challenge (Python/Django Jr-SSr)
 
-El propósito de esta prueba es conocer tu capacidad para crear una pequeña aplicación funcional en un límite de tiempo. A continuación, encontrarás las funciones, los requisitos y los puntos clave que debés tener en cuenta durante el desarrollo.
+## Descripción
+Es una aplicación web, donde podes crear una lista de tarea, marcarlas como hechas, eliminarlas. A su vez para poder usar esta aplicacion hay que loguearse, por lo cual tiene login, registro, y tambien editar perfil.
 
-## Qué queremos que hagas:
+## Instalación
+1- En Github en code copiamos el https:
+  ![guardar 1](https://user-images.githubusercontent.com/105326853/183825747-3ad5f7ff-26b3-47c7-bf34-933bba9fcfbf.png)  
+    
+2- En nuestra terminal elegimos donde clonar la carpeta usando "git clone" y pegamos el link HTTPS que copiamos.  
+  `git clone https://github.com/jimedeg/clapperboard.git`  
+    
+3-Con github desktop:  
+  ![guardar 2](https://user-images.githubusercontent.com/105326853/183825925-c0b890fe-fb8e-4c0a-bf4f-a4ba3f107c80.jpg)  
+    
+4- Elegimos donde clonar la carpeta.  
+   
+5- En la carpeta abrimos la consola:  
+![consola](https://user-images.githubusercontent.com/105326853/183826010-5753aca2-9f2c-40eb-953b-ab0d85b241ca.png)  
+  
+6- Instalamos el archivo requirements.txt:  
+   `pip install -r requirements.txt`  
 
-- El Challenge consiste en crear una aplicación web sencilla que permita a los usuarios crear y mantener una lista de tareas.
-- La entrega del resultado será en un nuevo fork de este repo y deberás hacer una pequeña demo del funcionamiento y desarrollo del proyecto ante un super comité de las más grandes mentes maestras de Invera, o a un par de devs, lo que sea más fácil de conseguir.
-- Podes contactarnos en caso que tengas alguna consulta.
+7- Hacemos las migraciones con:  
+  `python manage.py makemigrations`  
+  `python manage.py migrate`  
+     
+8- Lanzamos el servidor con:  
+  `python manage.py runserver`  
 
-## Objetivos:
+## Panel de administrador  
+1- Crear usuario administrador  
 
-El usuario de la aplicación tiene que ser capaz de:
+ `python manage.py createsuperuser`  
 
-- Autenticarse
-- Crear una tarea
-- Eliminar una tarea
-- Marcar tareas como completadas
-- Poder ver una lista de todas las tareas existentes
-- Filtrar/buscar tareas por fecha de creación y/o por el contenido de la misma
+## Dependencias Usadas  
+-[Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/install.html "Crispy Forms"): lo use para mejorar todos lo formularios del proyecto.  
 
-## Qué evaluamos:
+## Creadora  
 
-- Desarrollo utilizando Python, Django. No es necesario crear un Front-End, pero sí es necesario tener una API que permita cumplir con los objetivos de arriba.
-- Uso de librerías y paquetes estandares que reduzcan la cantidad de código propio añadido.
-- Calidad y arquitectura de código. Facilidad de lectura y mantenimiento del código. Estándares seguidos.
-- [Bonus] Manejo de logs.
-- [Bonus] Creación de tests (unitarias y de integración)
-- [Bonus] Unificar la solución propuesta en una imagen de Docker por repositorio para poder ser ejecutada en cualquier ambiente (si aplica para full stack).
+-[Linkedin](https://www.linkedin.com/in/jimena-anahí-degiorgi/ "Linkedin" ) 
+-[WhatsApp](https://wa.link/by2i0e "WhatsApp")
 
-## Requerimientos de entrega:
-
-- Hacer un fork del proyecto y pushearlo en github. Puede ser privado.
-- La solución debe correr correctamente.
-- El Readme debe contener todas las instrucciones para poder levantar la aplicación, en caso de ser necesario, y explicar cómo se usa.
-- Disponibilidad para realizar una pequeña demo del proyecto al finalizar el challenge.
-- Tiempo para la entrega: Aproximadamente 7 días.
+-Mi nombre es Jimena Anahí Degiorgi, soy desarrolladora Python, muy apasionada por la programación y la tecnología, estoy en constante capacitacion y siempre predispuesta al trabajo en grupo.
