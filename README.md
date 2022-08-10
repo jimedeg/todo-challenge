@@ -1,4 +1,4 @@
-# Invera ToDo-List Challenge (Python/Django Jr-SSr)
+# Invera ToDo-List Challenge
 
 ## Descripción
 Es una aplicación web, donde podes crear una lista de tarea, marcarlas como hechas, eliminarlas. A su vez para poder usar esta aplicacion hay que loguearse, por lo cual tiene login, registro, y tambien editar perfil.
