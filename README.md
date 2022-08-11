@@ -32,6 +32,9 @@ Es una aplicación web, donde podes crear una lista de tarea, marcarlas como hec
 1- Crear usuario administrador  
 
  `python manage.py createsuperuser`  
+ 
+ ## Tecnología Usada  
+ - Python 3.9.13
 
 ## Dependencias Usadas  
 -[Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/install.html "Crispy Forms"): lo use para mejorar todos lo formularios del proyecto.  
